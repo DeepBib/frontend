@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- FONT IMPORT -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <title>DeepBib</title>
+    </head>
+<body>
+
+    <header>
+
+    </header>
+    <main>
+        <nav class="navbar navbar-light bg-nav">
+            <div class="container-fluid">
+              <a class="navbar-brand">DeepBib :</a>
+              <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+        </nav>  
+            <div class="row">
+                <div class="col-sm-2" style="padding-right: 0px;">
+                    <div class="filter bg-light">
+                        <div class="filter-title text-center"><h3>Filter:</h3></div>
+                        <div class="filter-section row" id="date">
+                            <div class="filter-title row">Date :</div>
+                            <div class="filter-form row">
+                                <form class="d-flex">
+                                    <input class="form-control me-2 date-form" type="year" placeholder="1980" aria-label="first-date">
+                                    <input class="form-control me-2 date-form" type="year" placeholder="2022" aria-label="second-date">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="filter-section row" id="lang">
+                            <div class="filter-title row">Language :</div>
+                            <div class="filter-form row">
+
+                            </div>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="filter-section row" id="quality">
+                            <div class="filter-title row">Quality :</div>
+                            <div class="filter-form row">
+
+                            </div>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="filter-section row" id="forbidden">
+                            <div class="filter-title row">Forbidden :</div>
+                            <div class="filter-form row"></div>
+                            <div class="filter-form row"></div>
+                        </div>
+                        <div class="separator"></div>
+                        <div class="filter-section text-center" id="applied">
+                            <button type="submit" class="btn">Applied</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div id="article-1" class="bg-article">
+                            <div class="row">
+                            <div class="col-sm-10">
+                                <div class="article-info">
+                                    <div class="article-title">TITLE DOCUMENT</div>
+                                    <div class="article-author">TOM HATE</div>
+                                    <div class="article-date">DATE</div>
+                                    <div class="article-abstract">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur nisi iusto perspiciatis quibusdam perferendis odit hic voluptatibus velit beatae aliquid ipsa quae culpa corrupti, iste obcaecati minima nemo numquam aut nostrum ut sequi? Ea cupiditate dolore cum eligendi veniam ex quos odit, id veritatis quisquam voluptates, explicabo mollitia quibusdam labore fugiat magni incidunt vel tenetur rem? Aut fuga qui tempore sint minima culpa, quidem optio rerum adipisci dolor reiciendis consequuntur perspiciatis ipsum architecto dolore! Sapiente ipsa libero consequuntur obcaecati inventore, quia blanditiis velit officiis neque quo commodi, recusandae ullam nemo ab? Maiores quisquam, eius voluptatum nisi dolorum dolor sit.</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="article-ref">
+                                    <div class="article-relevance">XX%</div>
+                                    <div class="article-site">arXiv</div>
+                                    <div class="article-type">Press</div>
+                                    <div class="article-link">here</div>
+
+                                    <div class="article-availability">Free</div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>               
+                </div>
+            </div>
+    </main>
+</body>
+</html>
