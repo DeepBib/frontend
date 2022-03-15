@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route
 } from "react-router-dom"
 
@@ -13,20 +13,9 @@ function App() {
   return (
     <div className="">
       <Router>
-        <div className="">
-          <Switch>
-
-            <Route exact path="/">
-              <Search/>
-            </Route>
-
-            <Route path="/results/:query">
-              <Results/>
-            </Route>
-
-          </Switch>
-
-        </div>
+        <Routes>
+          <Route exact path="/" element={<Search/>}/>
+        </Routes>
       </Router>
     </div>
 
