@@ -7,7 +7,7 @@ import {
 
 import Search from './Views/Search'
 import Results from './Views/Results'
-import Result_Article from './Components/ResultArticle'
+import ResultArticle from './Components/ResultArticle'
 
 function App() {
   return (
@@ -15,6 +15,8 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Search/>}/>
+          <Route exact path="/:api" element={<Results/>}/>
+          <Route exact path="/:api/:sujet" element={<ResultArticle/>}/>
         </Routes>
       </Router>
     </div>
