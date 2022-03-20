@@ -2,6 +2,22 @@ import React from "react";
 
 
 function Result_Article(){
+    // On récupére l'élément donner en argument de result article
+    const article = this.props.article;
+    // on initialiser les vvariables pour l'affichage
+    // article description section 
+    const title = article.title;
+    const author = article.author;
+    const date = article.date;
+    const abstract = article.abstract;
+    // article info
+    const relevance = article.relevance;
+    const site = article.site;
+    const type = article.type;
+    const link = article.link;
+    const availability = article.availability;
+
+
     return(
         <div className="col-sm-10">
             <div className="row">
@@ -9,20 +25,20 @@ function Result_Article(){
                     <div className="row">
                         <div className="col-sm-10">
                             <div className="article-info">
-                                <div className="article-title">TITLE DOCUMENT</div>
-                                <div className="article-author">TOM HATE</div>
-                                <div className="article-date">DATE</div>
-                                <div className="article-abstract">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur nisi iusto perspiciatis quibusdam perferendis odit hic voluptatibus velit beatae aliquid ipsa quae culpa corrupti, iste obcaecati minima nemo numquam aut nostrum ut sequi? Ea cupiditate dolore cum eligendi veniam ex quos odit, id veritatis quisquam voluptates, explicabo mollitia quibusdam labore fugiat magni incidunt vel tenetur rem? Aut fuga qui tempore sint minima culpa, quidem optio rerum adipisci dolor reiciendis consequuntur perspiciatis ipsum architecto dolore! Sapiente ipsa libero consequuntur obcaecati inventore, quia blanditiis velit officiis neque quo commodi, recusandae ullam nemo ab? Maiores quisquam, eius voluptatum nisi dolorum dolor sit.</div>
+                                <div className="article-title">{title}</div>
+                                <div className="article-author">{author}</div>
+                                <div className="article-date">{date}</div>
+                                <div className="article-abstract">{abstract}</div>
                             </div>
                         </div>
                         <div className="col-sm-2">
                             <div className="article-ref">
-                                <div className="article-relevance">XX%</div>
-                                <div className="article-site">arXiv</div>
-                                <div className="article-type">Press</div>
-                                <div className="article-link">here</div>
+                                <div className="article-relevance">{relevance}%</div>
+                                <div className="article-site">{site}</div>
+                                <div className="article-type">{type}</div>
+                                <div className="article-link">{link}</div>
             
-                                <div className="article-availability">Free</div>
+                                <div className="article-availability">{availability}</div>
                             </div>
                         </div>
                     </div>
