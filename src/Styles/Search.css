@@ -1,0 +1,11 @@
+.container{
+    margin:auto;
+    margin-top: 15%;
+    text-align: center;
+}
+
+.title,h1{
+    font-family: font-radley-regular;
+    font-size: calc(6rem + 1.5vw);
+}
+
