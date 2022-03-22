@@ -1,3 +1,25 @@
+@font-face {
+    font-family: font-radley-regular;
+    src: url(font/radley.regular.ttf);
+}
+
+@font-face {
+    font-family: font-radley-italic;
+    src: url(font/radley.italic.ttf);
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: font-radley-regular;
+}
+
+/*----------------FIRST PAGE-------------------*/
+main{
+    height: 100%;
+}
+
 .container{
     margin:auto;
     margin-top: 15%;
@@ -9,3 +31,58 @@
     font-size: calc(6rem + 1.5vw);
 }
 
+.btn{
+    width: fit-content;
+    border: 1px solid;
+    background-color: #fffafb;
+    border-radius: 15px;
+}
+.form-control{
+    border-radius: 15px;
+}
+
+.API-row{
+    margin-top: 20px;
+}
+
+.nav-footer{
+    bottom: 0;
+}
+
+
+/*---------------FILTER SECTION--------------------*/
+
+.filter{
+    height:100vh;
+    border: 1px solid;
+    background-color: gray;}
+.separator{
+    border: 1px solid;
+    border-color: black;
+}
+
+.filter-section{
+    padding: 12px;
+}
+
+
+.date-form{
+    height: fit-content;
+    border-radius: 21px;
+}
+
+
+
+.view-research{
+    width:max-content;
+    border: 1px solid;
+}
+
+.bg-nav{
+    background-color: #B1DBE4;
+}
+
+.bg-article{
+    border: 0.5px solid;
+    background-color: #E4F2F5;
+}

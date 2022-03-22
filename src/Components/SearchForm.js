@@ -1,52 +1,48 @@
 import React, { useState } from 'react';
-// import SearchBar from "./SearchBar";
-// import CheckBoxAPI from "./CheckBoxAPI";
+import CheckBoxAPI from "./CheckBoxAPI";
 
-// const API = [
-//     'i3e',
-//     'arXiv',
-//     'sprinGer',
-//     'serApi',
-//     'Hall',
-// ];
+const API = [
+    'i3e',
+    'arXiv',
+    'sprinGer',
+    'serApi',
+    'Hall',
+];
 
 const SearchForm = (props) => {
 
     const [query, SetQuery] = useState(props.query || '');
 
-    // function toggleCheckbox (label){
-    //     if (this.selectedCheckboxes.has(label)) {
-    //       this.selectedCheckboxes.delete(label);
-    //     } else {
-    //       this.selectedCheckboxes.add(label);
-    //     }  
-    // }
+    const [checked, setChecked] = useState(false);
+
+    const handleChange =(label)=>{
+        setChecked(!checked);
+        console.log("ici :",label);
+    };
+
+    const createCheckBox=(label)=>{
+        return (
+            <div className="form-check form-check-inline">
+                <CheckBoxAPI
+                    label={label}
+                    value={checked}
+                    onChange={(e)=>handleChange(e)}
+                />
+            </div>
+        )
+    }
+
 
     // handleSubmit(event) {
     //     alert('A search was submitted: ' + this.state.query);
     //     event.preventDefault();
-    // }
-     
-    // createAPIsection(){
-    //     API.map(this.createCheckBox)
-    // }
-
-    // function createCheckBox(label){
-    //     return (<CheckBoxAPI
-    //         label={label}
-    //         handleCheckboxChange={this.toggleCheckbox}
-    //     />);
-    // }
-
-    // const createAPIsection = () => {
-    //     API.map(this.createCheckBox)
     // }
 
     return(
         <div>
             <div className="search-row row justify-content-center">
                 <div className="form-group col-6">
-                    <input type="text" value={query} onChange={(e) => SetQuery(e.target.value)} name="query" className="form-control" placeholder="Search" required autocomplete="off"></input>
+                    <input type="text" value={query} onChange={(e) => SetQuery(e.target.value)} name="query" className="form-control" placeholder="Search" required autoComplete="off"></input>
                 </div>
 
                 <div className="col-1">
@@ -56,8 +52,7 @@ const SearchForm = (props) => {
             </div>
             <div className="API-row form-inline">
                 <div className="API-form-text form-check-inline">Bib :</div>
-                
-                {/* {this.createAPIsection()}                    */}
+                {API.map(label=>createCheckBox(label))}
             </div>
         </div> 
     );
