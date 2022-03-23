@@ -9,34 +9,39 @@ const API = [
     'Hall',
 ];
 
+
 const SearchForm = (props) => {
 
     const [query, SetQuery] = useState(props.query || '');
 
     const [checked, setChecked] = useState(false);
 
-    const handleChange =(label)=>{
-        setChecked(!checked);
-        console.log("ici :",label);
-    };
+
+    const checkboxToParent =(checkBoxData,label)=>{
+        console.log("valeur check box :",!checkBoxData,"valeur label : ",label);
+        setChecked(checkBoxData);
+    } 
+
 
     const createCheckBox=(label)=>{
         return (
             <div className="form-check form-check-inline">
                 <CheckBoxAPI
+                    checkboxToParent={checkboxToParent}
                     label={label}
                     value={checked}
-                    onChange={(e)=>handleChange(e)}
                 />
             </div>
         )
     }
 
 
-    // handleSubmit(event) {
-    //     alert('A search was submitted: ' + this.state.query);
-    //     event.preventDefault();
-    // }
+    const handleSubmit=(event)=> {
+        // DOIT RECUPERER TOUT LES API SELECTIONNER ET LA QUERY
+
+        console.log(event);
+        event.preventDefault();
+    }
 
     return(
         <div>
@@ -46,7 +51,7 @@ const SearchForm = (props) => {
                 </div>
 
                 <div className="col-1">
-                    <button className="btn" onClick={() => console.log(query)}>Search</button>
+                    <button className="btn" onClick={(query)=>handleSubmit(query)}>Search</button>
                 </div>
                     
             </div>

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-const CheckBoxAPI =({label, value, onChange})=> {
+
+const CheckBoxAPI =({label, checkboxToParent})=> {
 
     const [checked, setChecked] = useState(false);
 
     const handleChange =(label)=>{
         setChecked(!checked);
         console.log("ici :",label);
+        checkboxToParent(checked,label)
     };
 
    return(
