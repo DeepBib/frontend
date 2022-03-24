@@ -17,6 +17,7 @@ const SearchForm = (props) => {
             }).catch(error => {
                 console.log(error);
             })
+    }
     
     const API = [
         { label : 'i3e',        checked : false },
@@ -74,5 +75,3 @@ const SearchForm = (props) => {
 }
 
 export default SearchForm;
-
-
