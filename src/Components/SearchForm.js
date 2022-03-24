@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-// const API = [
-//     'i3e',
-//     'arXiv',
-//     'sprinGer',
-//     'serApi',
-//     'Hall',
-// ];
+import CheckBoxAPI from "./CheckBoxAPI";
 
 const SearchForm = (props) => {
 
     const [query, setQuery] = useState(props.query || '');
     const [response, setResponse] = useState("");
+    const [checked, setChecked] = useState(false);
 
     const fetchData = (api,query) => {
+        console.log("La query est  : ",query," Les API sont : ",API);
         axios.get(`http://localhost:8000/articles/${query}`)
             .then(response => {
                 console.log(response);
@@ -22,6 +17,40 @@ const SearchForm = (props) => {
             }).catch(error => {
                 console.log(error);
             })
+    
+    const API = [
+        { label : 'i3e',        checked : false },
+        { label : 'arXiv',      checked : false },
+        { label : 'springer',   checked : false },
+        { label : 'Hall',       checked : false },
+        { label : 'serp',       checked : false }
+    ];
+
+    const updateListAPI=(state,label)=>{
+        API.forEach(element=>{
+            if(element.label===label){element.checked=!state};
+        })
+        console.log(API)
+    }
+
+    const checkboxToParent =(checkBoxData,label)=>{
+        //console.log("valeur check box :",!checkBoxData,"valeur label : ",label);
+        setChecked(checkBoxData);
+        updateListAPI(checkBoxData,label);
+       // console.log(API);
+    } 
+
+
+    const createCheckBox=(api)=>{
+        return (
+            <div className="form-check form-check-inline">
+                <CheckBoxAPI
+                    checkboxToParent={checkboxToParent}
+                    label={api.label}
+                    value={api.checked}
+                />
+            </div>
+        )
     }
 
     return(
@@ -38,6 +67,7 @@ const SearchForm = (props) => {
             </div>
             <div className="API-row form-inline">
                 <div className="API-form-text form-check-inline">Bib :</div>
+                {API.map(api=>createCheckBox(api))}
             </div>
         </div> 
     );
