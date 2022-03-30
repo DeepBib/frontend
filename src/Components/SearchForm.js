@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import CheckBoxAPI from "./CheckBoxAPI";
 
 const SearchForm = (props) => {
+
+    const navigate = useNavigate();
 
     const [query, setQuery] = useState(props.query || '');
     const [response, setResponse] = useState("");
     const [checked, setChecked] = useState(false);
 
     const fetchData = (api,query) => {
+        
         console.log("La query est  : ",query," Les API sont : ",API);
-        axios.get(`http://localhost:8000/articles/${query}`)
+        axios.get(`http://localhost:8080/articles/${query}`)
             .then(response => {
                 console.log(response);
                 setResponse(response);
+                navigate(`/arxiv`, { query, replace: true });
             }).catch(error => {
                 console.log(error);
             })

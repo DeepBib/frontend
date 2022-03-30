@@ -15,7 +15,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Search/>}/>
-          <Route exact path="/:api" element={<Results/>}/>
+          <Route exact path="/:query" element={<Results/>}/>
           <Route exact path="/:api/:sujet" element={<ResultArticle/>}/>
         </Routes>
       </Router>
