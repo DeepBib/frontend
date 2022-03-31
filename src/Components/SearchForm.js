@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import CheckBoxAPI from "./CheckBoxAPI";
-
-// const API = [
-//     'i3e',
-//     'arXiv',
-//     'sprinGer',
-//     'serApi',
-//     'Hall',
-// ];
 
 const SearchForm = (props) => {
 
-    const [query, SetQuery] = useState(props.query || '');
-
+    const [query, setQuery] = useState(props.query || '');
+    const [response, setResponse] = useState("");
     const [checked, setChecked] = useState(false);
 
+    const fetchData = (api,query) => {
+        console.log("La query est  : ",query," Les API sont : ",API);
+        axios.get(`http://localhost:8000/articles/${query}`)
+            .then(response => {
+                console.log(response);
+                setResponse(response);
+            }).catch(error => {
+                console.log(error);
+            })
+    }
+    
     const API = [
         { label : 'i3e',        checked : false },
         { label : 'arXiv',      checked : false },
@@ -50,22 +54,15 @@ const SearchForm = (props) => {
         )
     }
 
-
-    const handleSubmit=(query)=> {
-        //console.log(API);
-        console.log("La query est  : ",query," Les API sont : ",API);
-       // event.preventDefault();
-    }
-
     return(
         <div>
             <div className="search-row row justify-content-center">
                 <div className="form-group col-6">
-                    <input type="text" value={query} onChange={(e) => SetQuery(e.target.value)} name="query" className="form-control" placeholder="Search" required autoComplete="off"></input>
+                    <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} name="query" className="form-control" placeholder="Search" required autocomplete="off"></input>
                 </div>
 
                 <div className="col-1">
-                    <button className="btn" onClick={()=>handleSubmit(query)}>Search</button>
+                    <button className="btn" onClick={() => fetchData(query)}>Search</button>
                 </div>
                     
             </div>
@@ -78,5 +75,3 @@ const SearchForm = (props) => {
 }
 
 export default SearchForm;
-
-
