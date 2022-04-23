@@ -15,6 +15,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+## "HOW TO PROCED WITH OUR PROJECT"
+
 ### `npm install`
 
 You might be run 'npm install' before 'npm start' if its fail with modules not found 
@@ -23,17 +25,26 @@ You might be run 'npm install' before 'npm start' if its fail with modules not f
 
 To connect the backend with the frontend in order to use different API.
 You have to run ''
-### `npm start`
+### `npm run dev`
 
-In each repository (Frontend this repository and Backend available [here](https://github.com/DeepBib/backend.git) )
+In Backend repository available [here](https://github.com/DeepBib/backend.git) )
 ## How to use Backend
 
-After run the npm start in Backend path
+After run the npm run dev in Backend path
 you might have this output on console. 
-### `Example app listening on port 3000!`
-To be continued.....
+### `Example app listening on port 8080!`
+
+So you can add your query in the url of back-end like 
+### 'localhost:8080/articles/query'
+
+then you enter your query in the searchbar in forntend 
+with the arXiv selected (For now we allow juste the query to arXiv API)
+
+Your should have a result of your query. 
 
 
+
+## "DOC FOR REACT APP "
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
