@@ -8,11 +8,31 @@ In the project directory, you can run:
 
 ### `npm start`
 
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+### `npm install`
+
+You might be run 'npm install' before 'npm start' if its fail with modules not found 
+
+## Link Between Frontend and Backend
+
+To connect the backend with the frontend in order to use different API.
+You have to run ''
+### `npm start`
+
+In each repository (Frontend this repository and Backend available [here](https://github.com/DeepBib/backend.git) )
+## How to use Backend
+
+After run the npm start in Backend path
+you might have this output on console. 
+### `Example app listening on port 3000!`
+To be continued.....
+
 
 ### `npm test`
 

@@ -11,7 +11,7 @@ const SearchForm = (props) => {
     const [response, setResponse] = useState("");
     const [checked, setChecked] = useState(false);
 
-    const fetchData = (api,query) => {
+    const fetchData = (query) => {
         
         console.log("La query est  : ",query," Les API sont : ",API);
         axios.get(`http://localhost:8080/articles/${query}`)

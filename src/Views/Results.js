@@ -3,6 +3,9 @@ import {useLocation} from 'react-router-dom';
 import '../Styles/Result.css';
 import axios from 'axios';
 
+
+import ResultArticle from "../Components/ResultArticle";
+
 const Result = ( props ) => {
 
     const location = useLocation();
@@ -39,30 +42,60 @@ const Result = ( props ) => {
     }
 
     return (
-        <div className="carousel">
-            {isLoading 
-            ?
-            <div className="Loader">
-                <h1>Cargando...</h1>
-            </div>
-            :
-            response.length > 0 && response.map(item => 
+        //-------------------------------- MODE CAROUSSEL----------------------------------
+        // <div className="carousel">
+        //     {isLoading 
+        //     ?
+        //     <div className="Loader">
+        //         <h1>Cargando...</h1>
+        //     </div>
+        //     :
+        //     response.length > 0 && response.map(item => 
                  
-                (
-                    <article className="episode">
-                        <div className="episode__number">{response.indexOf(item)}</div>
-                        <div className="episode__content">
-                        <div className="title">{item.title}</div>
-                        <div className="story">
-                            <p>{item.summary}</p>
+        //         (
+        //             <article className="episode">
+        //                 <div className="episode__number">{response.indexOf(item)}</div>
+        //                 <div className="episode__content">
+        //                 <div className="title">{item.title}</div>
+        //                 <div className="story">
+        //                     <p>{item.summary}</p>
+        //                 </div>
+        //                 </div>
+        //             </article>
+        //         )
+        //     )
+        //     }
+        // </div>
+        //------------------------------------------------------------------------------------
+        <div>
+            <nav className="navbar navbar-light bg-nav">
+                <div className='searchBar container-fluid'> 
+                    <div className='nav-title'>DeepBib : </div> 
+                    <div className='col-6'>
+                        <input type="text" name="query" className="form-control col-4" placeholder="Search" required autocomplete="off"></input> 
+                        <div className="col-2">
+                            <button className="btn">Search</button>
                         </div>
-                        </div>
-                    </article>
-                )
-            )
-            }
+                    </div> 
+                </div>
+            </nav>
+
+
+            <div className="row">
+                <div className="col-sm-2">
+                    {/* <Filter/>   */}
+                </div>
+               {isLoading ?
+                <div className="Loader">
+                    <h1>Cargando...</h1>
+                </div>
+                :response.length > 0 && <ResultArticle result={response}/>
+               }
+                
+            </div>
+
         </div>
-        
+
         
     );
 }

@@ -61,6 +61,36 @@ a {
   line-height: 26px;
 }
 
+.searchBar{
+  padding: 3px;
+  padding-left: 10px;
+  margin: 5px;
+
+}
+
+.nav-title{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+
+
+
+.article-title{
+  font-size: large;
+  font-weight: bold;
+}
+
+.article-author{
+  font-size: large;
+  font-style: italic;
+}
+
+
+
+
+
+
 @media (max-width: 600px) {
   .episode__content {
     grid-template-columns: 1fr;
