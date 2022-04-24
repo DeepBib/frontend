@@ -10,33 +10,43 @@ const SearchForm = (props) => {
     const [query, setQuery] = useState(props.query || '');
     const [response, setResponse] = useState("");
     const [checked, setChecked] = useState(false);
+    const [apiState, setAPIState] = useState(
+        [
+            { label : 'i3e',        checked : false },
+            { label : 'arXiv',      checked : false },
+            { label : 'springer',   checked : false },
+            { label : 'Hall',       checked : false },
+            { label : 'serp',       checked : false }
+        ]
+    );
 
     const fetchData = (query) => {
+
+        apiState.forEach(api => {
+
+            console.log(api.label, " ", api.checked);
+            if(api.checked){
+                console.log("La query est  : ",query," Avec l'API est : ",api.label);
+                axios.get(`http://localhost:8080/${api.label}/${query}`)
+                    .then(response => {
+                        console.log(response);
+                        setResponse(response.data);
+                        navigate(`/${api.label}`, { responseJson:  response.data});
+                    }).catch(error => {
+                        console.log(error);
+                    })
+            }
+        });
         
-        console.log("La query est  : ",query," Les API sont : ",API);
-        axios.get(`http://localhost:8080/articles/${query}`)
-            .then(response => {
-                console.log(response);
-                setResponse(response);
-                navigate(`/arxiv`, { query, replace: true });
-            }).catch(error => {
-                console.log(error);
-            })
+        
     }
-    
-    const API = [
-        { label : 'i3e',        checked : false },
-        { label : 'arXiv',      checked : false },
-        { label : 'springer',   checked : false },
-        { label : 'Hall',       checked : false },
-        { label : 'serp',       checked : false }
-    ];
 
     const updateListAPI=(state,label)=>{
-        API.forEach(element=>{
+        apiState.forEach(element=>{
             if(element.label===label){element.checked=!state};
         })
-        console.log(API)
+        console.log(apiState);
+        setAPIState(apiState);
     }
 
     const checkboxToParent =(checkBoxData,label)=>{
@@ -73,7 +83,7 @@ const SearchForm = (props) => {
             </div>
             <div className="API-row form-inline">
                 <div className="API-form-text form-check-inline">Bib :</div>
-                {API.map(api=>createCheckBox(api))}
+                {apiState.map(api=>createCheckBox(api))}
             </div>
         </div> 
     );

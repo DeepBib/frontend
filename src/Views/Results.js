@@ -2,20 +2,23 @@ import React, { useState, useEffect } from 'react';
 import {useLocation} from 'react-router-dom';
 import '../Styles/Result.css';
 import axios from 'axios';
-
-
 import ResultArticle from "../Components/ResultArticle";
 
 const Result = ( props ) => {
 
     const location = useLocation();
+    //const responseJson = props.navigation.getParam("response");
     
     const [response, setResponse] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
-        fetchData();
+        //fetchData();
+        //console.log(responseJson);
+        console.log("Location  : ",location);
+        console.log("props  : ", props);
+        //setResponse(responseJson.data);
       }, [])
 
     const fetchData = () => {
