@@ -1,25 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom"
 
 import Search from './Views/Search'
 import Results from './Views/Results'
+import NotFound from './Views/NotFound'
 import ResultArticle from './Components/ResultArticle'
 
 function App() {
+  const [data, setData] = useState({});
+
   return (
-    <div className="">
-      <Router>
-        <Routes>
-          <Route exact path="/" element={<Search/>}/>
-          <Route exact path="/:query" element={<Results responseJson/>}/>
-          <Route exact path="/:api/:sujet" element={<ResultArticle/>}/>
-        </Routes>
-      </Router>
-    </div>
+      <Routes>
+        <Route exact path="/" element={<Search/>}/>
+        <Route exact path="/:query" element={<Results responseJson/>}/>
+        <Route exact path="/:api/:sujet" element={<ResultArticle/>}/>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
 
   );
 }

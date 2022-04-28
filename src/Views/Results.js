@@ -6,7 +6,7 @@ import ResultArticle from "../Components/ResultArticle";
 
 const Result = ( props ) => {
 
-    const location = useLocation();
+    let location = useLocation();
     //const responseJson = props.navigation.getParam("response");
     
     const [response, setResponse] = useState({});
@@ -19,7 +19,7 @@ const Result = ( props ) => {
         console.log("Location  : ",location);
         console.log("props  : ", props);
         //setResponse(responseJson.data);
-      }, [])
+      }, [location])
 
     const fetchData = () => {
         const query = location.query;        
@@ -75,7 +75,7 @@ const Result = ( props ) => {
                 <div className='searchBar container-fluid'> 
                     <div className='nav-title'>DeepBib : </div> 
                     <div className='col-6'>
-                        <input type="text" name="query" className="form-control col-4" placeholder="Search" required autocomplete="off"></input> 
+                        <input type="text" name="query" className="form-control col-4" placeholder="Search" required></input> 
                         <div className="col-2">
                             <button className="btn">Search</button>
                         </div>

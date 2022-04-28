@@ -31,7 +31,7 @@ const SearchForm = (props) => {
                     .then(response => {
                         console.log(response);
                         setResponse(response.data);
-                        navigate(`/${api.label}`, { responseJson:  response.data});
+                        navigate(`/${api.label}`, { replace: true, responseJson:  response.data});
                     }).catch(error => {
                         console.log(error);
                     })
@@ -57,9 +57,9 @@ const SearchForm = (props) => {
     } 
 
 
-    const createCheckBox=(api)=>{
+    const createCheckBox=(api,i)=>{
         return (
-            <div className="form-check form-check-inline">
+            <div className="form-check form-check-inline" key={i}>
                 <CheckBoxAPI
                     checkboxToParent={checkboxToParent}
                     label={api.label}
@@ -73,7 +73,7 @@ const SearchForm = (props) => {
         <div>
             <div className="search-row row justify-content-center">
                 <div className="form-group col-6">
-                    <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} name="query" className="form-control" placeholder="Search" required autocomplete="off"></input>
+                    <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} name="query" className="form-control" placeholder="Search" required ></input>
                 </div>
 
                 <div className="col-1">
@@ -83,7 +83,7 @@ const SearchForm = (props) => {
             </div>
             <div className="API-row form-inline">
                 <div className="API-form-text form-check-inline">Bib :</div>
-                {apiState.map(api=>createCheckBox(api))}
+                {apiState.map((api,i)=>createCheckBox(api,i))}
             </div>
         </div> 
     );

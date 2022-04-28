@@ -9,7 +9,7 @@ function Filter(props){
             <div className="date-filter ro<">
                 <h4>Date :</h4>
                 <div className="row">
-                <input type="date" name="date-1" className="form-date" placeholder="12-02-1999" required autocomplete="off"></input>to<input type="date" name="date-1" className="form-date" placeholder="12-02-2012" required autocomplete="off"></input>
+                <input type="date" name="date-1" className="form-date" placeholder="12-02-1999" required ></input>to<input type="date" name="date-1" className="form-date" placeholder="12-02-2012" required ></input>
                 </div>
             </div>
             <div className="rank">
