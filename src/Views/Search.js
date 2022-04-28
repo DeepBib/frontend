@@ -2,6 +2,8 @@ import React from "react";
 import SearchForm from "../Components/SearchForm";
 import '../Styles/Search.css';
 
+
+// Récupére la query de l'utilisateur et les api sélectionner
 function Search(){
 
     return(

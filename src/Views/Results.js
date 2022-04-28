@@ -4,11 +4,18 @@ import '../Styles/Result.css';
 import axios from 'axios';
 import ResultArticle from "../Components/ResultArticle";
 
+
+//Reçoit la réponse et gére sont affichage (Filter et ResultArticle)
+// Mais peut lancer une nouvelle requête sans modiifer les API sélectionner
+
 const Result = ( props ) => {
 
     const location = useLocation();
     //const responseJson = props.navigation.getParam("response");
-    
+    //response
+    //query + api 
+
+
     const [response, setResponse] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 

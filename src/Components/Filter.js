@@ -1,6 +1,9 @@
 import React from "react";
 
+//Modifie la réponse mais pas la query, donc gère que la réponse 
 function Filter(props){
+    //response 
+
 
     return(
 

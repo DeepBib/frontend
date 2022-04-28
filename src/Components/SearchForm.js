@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import CheckBoxAPI from "./CheckBoxAPI";
 
+//Modifie la query et l'API List 
 const SearchForm = (props) => {
 
     const navigate = useNavigate();
