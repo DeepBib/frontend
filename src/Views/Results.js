@@ -21,16 +21,16 @@ const Result = ( props ) => {
 
 
     useEffect(() => {
-        //fetchData();
+        fetchData();
         //console.log(responseJson);
         console.log("Location  : ",location);
         console.log("props  : ", props);
         //setResponse(responseJson.data);
-      }, [location])
+      }, [location, ])
 
     const fetchData = () => {
-        const query = location.query;        
-        axios.get(`http://localhost:8080/articles/${query}`)
+        const query = location.pathname;        
+        axios.get(`http://localhost:8080${query}`)
             .then(response => {
                 console.log("La query est  : ",query);
                 

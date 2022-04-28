@@ -15,8 +15,8 @@ function App() {
   return (
       <Routes>
         <Route exact path="/" element={<Search/>}/>
-        <Route exact path="/:query" element={<Results responseJson/>}/>
-        <Route exact path="/:api/:sujet" element={<ResultArticle/>}/>
+        <Route exact path="/:query/:sujet" element={<Results responseJson/>}/>
+        <Route exact path="/:api/:sujet/:nom" element={<ResultArticle/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
 

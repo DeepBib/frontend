@@ -32,7 +32,7 @@ const SearchForm = (props) => {
                     .then(response => {
                         console.log(response);
                         setResponse(response.data);
-                        navigate(`/${api.label}`, { replace: true, responseJson:  response.data});
+                        navigate(`/${api.label}/${query}`, { replace: true, responseJson:  response.data});
                     }).catch(error => {
                         console.log(error);
                     })
