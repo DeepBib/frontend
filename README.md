@@ -27,7 +27,7 @@ To connect the backend with the frontend in order to use different API.
 You have to run ''
 ### `npm run dev`
 
-In Backend repository available [here](https://github.com/DeepBib/backend.git) )
+In Backend repository available [here](https://github.com/DeepBib/backend.git)
 ## How to use Backend
 
 After run the npm run dev in Backend path
