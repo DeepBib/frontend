@@ -1,7 +1,8 @@
 import React from "react";
 
-
+// Modifie aucune données gère que l'affichage de la réponse
 function ResultArticle(props){
+
     // On récupére l'élément donner en argument de result article
     const reponse = props.result;
     console.log(reponse)
