@@ -3,6 +3,7 @@ import {useLocation} from 'react-router-dom';
 import '../Styles/Result.css';
 import axios from 'axios';
 import ResultArticle from "../Components/ResultArticle";
+// import Filter from "../Components/Filter";
 
 
 //Reçoit la réponse et gére sont affichage (Filter et ResultArticle)
@@ -22,9 +23,9 @@ const Result = (props) => {
     useEffect(() => {
         //fetchData();
         //console.log(responseJson);
-        console.log("Location  : ",location);
-        console.log("props  : ",props);
-        console.log("response  : ",props.response);
+        // console.log("Location  : ",location);
+        // console.log("props  : ",props);
+        // console.log("response  : ",props.response);
 
         //setResponse(responseJson.data);
       }, [])

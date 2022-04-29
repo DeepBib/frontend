@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+
 import CheckBoxAPI from "./CheckBoxAPI";
 
-const SPRINGER_API_KEY = process.env.SPRINGER_API_KEY;
-const NODE_ENV = process.env.NODE_ENV;
+// const SPRINGER_API_KEY = process.env.SPRINGER_API_KEY;
+// const NODE_ENV = process.env.NODE_ENV;
+
+const parseString = require('react-native-xml2js').parseString;
 
 
 const SearchForm = (props) => {
@@ -33,12 +36,30 @@ const SearchForm = (props) => {
                 console.log("La query est  : ",query," Avec l'API est : ",api.label);
                 axios.get(`http://export.arxiv.org/api/query?search_query=all:${query}&max_results=12`)
                     .then(response => {
-                        console.log("On a une reponse");
-                        console.log(response);
-                        props.handleResponse(response.data);
-                                               
-                        navigate(`/results/${query}`);
-                       
+                        // var convert = require('xml-js');
+
+                        // var xml = response.data
+                        // convert.parseString(xml, (err, result) => {
+                        //     if(err) {
+                        //         console.log(err);
+                        //     }
+                        // });
+
+                        // console.log(typeof(json));
+                        // console.log(json);
+                        parseString(response, function (err, result) {
+                            //step--2 here
+                            var convert = require('xml-js');
+                            var xml = response.data
+                            var json = convert.xml2js(xml, {compact: true, spaces: 4});
+                            console.log("TYPE",typeof(json));
+                            console.log(json);
+                            props.handleResponse(json.feed.entry); 
+                        });
+
+                            
+                          
+                        navigate(`/results/${query}`,{replace:true});
                     }).catch(error => {
                         console.log(error);
                     }).finally(() => {
