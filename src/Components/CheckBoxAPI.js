@@ -6,7 +6,7 @@ const CheckBoxAPI =({label, checkboxToParent})=> {
 
     const handleChange =(label)=>{
         setChecked(!checked);
-        console.log(label ," : ",!checked);
+        console.log(label ," : ",checked);
         checkboxToParent(checked,label)
     };
 

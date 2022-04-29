@@ -4,30 +4,38 @@ import '../Styles/Result.css';
 import axios from 'axios';
 import ResultArticle from "../Components/ResultArticle";
 
-const Result = ( props ) => {
+
+//Reçoit la réponse et gére sont affichage (Filter et ResultArticle)
+// Mais peut lancer une nouvelle requête sans modiifer les API sélectionner
+
+const Result = (props) => {
 
     const location = useLocation();
-    //const responseJson = props.navigation.getParam("response");
-    
-    const [response, setResponse] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
+   // const responseJson = props.navigation.getParam("response");
+    //response
+    //query + api 
+
+    // const [response, setResponse] = useState({});
+    // const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
         //fetchData();
         //console.log(responseJson);
         console.log("Location  : ",location);
-        console.log("props  : ", props);
+        console.log("props  : ",props);
+        console.log("response  : ",props.response);
+
         //setResponse(responseJson.data);
       }, [])
 
     const fetchData = () => {
         const query = location.query;        
-        axios.get(`http://localhost:8080/articles/${query}`)
-            .then(response => {
+        axios.get(`http://export.arxiv.org/api/query?search_query=all:${query}&max_results=12`)
+        .then(response => {
                 console.log("La query est  : ",query);
                 
-                setResponse(response.data);
+                props.handleResponse(response.data);
                 // response.data.map(item => {
                 //     console.log("item\n");
                 //     console.log(item.title);
@@ -38,9 +46,9 @@ const Result = ( props ) => {
             }).catch(error => {
                 console.log(error);
             }).finally(() => {
-                console.log("RESPONSE TYPEE ", typeof(response));
-                console.log("RESPONSE lenght ", response);
-                setIsLoading(false);
+                console.log("RESPONSE TYPEE ", typeof(props.response));
+                console.log("RESPONSE lenght ", props.response);
+                props.handleLoading(false);
             })
     }
 
@@ -75,7 +83,7 @@ const Result = ( props ) => {
                 <div className='searchBar container-fluid'> 
                     <div className='nav-title'>DeepBib : </div> 
                     <div className='col-6'>
-                        <input type="text" name="query" className="form-control col-4" placeholder="Search" required autocomplete="off"></input> 
+                        <input type="text" name="query" className="form-control col-4" placeholder="Search" required autoComplete="off"></input> 
                         <div className="col-2">
                             <button className="btn">Search</button>
                         </div>
@@ -88,11 +96,11 @@ const Result = ( props ) => {
                 <div className="col-sm-2">
                     {/* <Filter/>   */}
                 </div>
-               {isLoading ?
+               {props.loading ?
                 <div className="Loader">
                     <h1>Cargando...</h1>
                 </div>
-                :response.length > 0 && <ResultArticle result={response}/>
+                :props.response.length > 0 && <ResultArticle result={props.response}/>
                }
                 
             </div>

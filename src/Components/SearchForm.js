@@ -3,12 +3,16 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import CheckBoxAPI from "./CheckBoxAPI";
 
+const SPRINGER_API_KEY = process.env.SPRINGER_API_KEY;
+const NODE_ENV = process.env.NODE_ENV;
+
+
 const SearchForm = (props) => {
 
     const navigate = useNavigate();
 
-    const [query, setQuery] = useState(props.query || '');
-    const [response, setResponse] = useState("");
+    // const [query, setQuery] = useState(props.query || '');
+    // const [response, setResponse] = useState("");
     const [checked, setChecked] = useState(false);
     const [apiState, setAPIState] = useState(
         [
@@ -27,13 +31,20 @@ const SearchForm = (props) => {
             console.log(api.label, " ", api.checked);
             if(api.checked){
                 console.log("La query est  : ",query," Avec l'API est : ",api.label);
-                axios.get(`http://localhost:8080/${api.label}/${query}`)
+                axios.get(`http://export.arxiv.org/api/query?search_query=all:${query}&max_results=12`)
                     .then(response => {
+                        console.log("On a une reponse");
                         console.log(response);
-                        setResponse(response.data);
-                        navigate(`/${api.label}`, { responseJson:  response.data});
+                        props.handleResponse(response.data);
+                                               
+                        navigate(`/results/${query}`);
+                       
                     }).catch(error => {
                         console.log(error);
+                    }).finally(() => {
+                        console.log("RESPONSE TYPEE ", typeof(props.response));
+                        console.log("RESPONSE lenght ", props.response);
+                        props.handleLoading(false);
                     })
             }
         });
@@ -50,7 +61,7 @@ const SearchForm = (props) => {
     }
 
     const checkboxToParent =(checkBoxData,label)=>{
-        //console.log("valeur check box :",!checkBoxData,"valeur label : ",label);
+        // console.log("valeur check box :",!checkBoxData,"valeur label : ",label);
         setChecked(checkBoxData);
         updateListAPI(checkBoxData,label);
        // console.log(API);
@@ -73,11 +84,11 @@ const SearchForm = (props) => {
         <div>
             <div className="search-row row justify-content-center">
                 <div className="form-group col-6">
-                    <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} name="query" className="form-control" placeholder="Search" required autocomplete="off"></input>
+                    <input type="text" value={props.query} onChange={(e) => props.handleQuery(e.target.value)} name="query" className="form-control" placeholder="Search" required autoComplete="off"></input>
                 </div>
 
                 <div className="col-1">
-                    <button className="btn" onClick={() => fetchData(query)}>Search</button>
+                    <button className="btn" onClick={() => fetchData(props.query)}>Search</button>
                 </div>
                     
             </div>
