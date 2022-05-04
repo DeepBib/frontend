@@ -4,9 +4,13 @@ import { useNavigate } from "react-router-dom";
 import '../Styles/Result.css';
 import axios from 'axios';
 import ResultArticle from "../Components/ResultArticle";
+//import spawn from "child_process";
 import Filter from "../Components/Filter";
+//import spawnAsync from "@expo/spawn-async";
 
 const parseString = require('react-native-xml2js').parseString;
+//var spawn = require("child_process"); 
+
 
 
 //Reçoit la réponse et gére sont affichage (Filter et ResultArticle)
@@ -24,6 +28,8 @@ const Result = (props) => {
     // const [isLoading, setIsLoading] = useState(true);
 
 
+
+
     useEffect(() => {
         //fetchData();
         //console.log(responseJson);
@@ -35,7 +41,8 @@ const Result = (props) => {
       }, [])
 
     const fetchData = () => {
-        const query = location.query; 
+        const query = location.query;        
+
         props.handleLoading(true);       
         axios.get(`http://export.arxiv.org/api/query?search_query=all:${query}&max_results=12`)
         .then(response => {
@@ -44,17 +51,18 @@ const Result = (props) => {
                 var convert = require('xml-js');
                 var xml = response.data
                 var json = convert.xml2js(xml, {compact: true, spaces: 4});
-                console.log("TYPE",typeof(json));
-                console.log(json);
+                //console.log("TYPE",typeof(json));
+                //console.log(json);
                 props.handleResponse(json.feed.entry); 
+
             });
             navigate(`/results/${query}`,{replace:true});
                 
             }).catch(error => {
                 console.log(error);
-            }).finally(() => {
-                console.log("RESPONSE TYPEE ", typeof(props.response));
-                console.log("RESPONSE lenght ", props.response);
+            }).finally(() => { // Fin de la process (all data was downloaded)
+               // console.log("RESPONSE TYPEE ", typeof(props.response));
+               // console.log("RESPONSE lenght ", props.response); 
                 props.handleLoading(false);
             })
     }

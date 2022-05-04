@@ -4,7 +4,7 @@ import React from "react";
 function ResultArticle(props){
     // On récupére l'élément donner en argument de result article
     const reponse = props.result;
-    console.log(reponse)
+    //console.log(reponse)
 
 
     const printResult=(article)=>{
@@ -15,8 +15,8 @@ function ResultArticle(props){
             <div className="bg-article">
                 <div className="row">
                     <div className="col-sm-10">
-                        <div className="article-info">{console.log("here")}
-                            <div className="article-title">{article.title._text}{console.log(article.title)}</div>
+                        <div className="article-info">
+                            <div className="article-title">{article.title._text}</div>
                             {/* <div className="article-author">{article.author.map(nameAuthor => (nameAuthor.name[0]))}</div> */}
 
                             <div className="article-date">{article.published._text}</div>
