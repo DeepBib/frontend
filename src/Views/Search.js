@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useState } from 'react';
 import SearchForm from "../Components/SearchForm";
 import '../Styles/Search.css';
 
+const Search = (props) => {
 
-// Récupére la query de l'utilisateur et les api sélectionner
-function Search(){
+    // const [query, setQuery] = useState("");
+    // const [response, setResponse] = useState("");
 
+
+    // const handleQuery=(quer)=>{
+    //     setQuery(quer);
+    // }
+
+    // const handleResponse=(rep)=>{
+    //     setResponse(rep);
+    // }
     return(
         <div className="container">
         <div className="title"><h1>DeepBib.</h1></div>
         <div className="form">
-            <SearchForm/>
+            <SearchForm query={props.query} response={props.response} handleQuery={props.handleQuery} handleResponse={props.handleResponse} handleLoading={props.handleLoading}/>
         </div>
         </div>
     )}

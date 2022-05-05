@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+
 import CheckBoxAPI from "./CheckBoxAPI";
 
-//Modifie la query et l'API List 
+// const SPRINGER_API_KEY = process.env.SPRINGER_API_KEY;
+// const NODE_ENV = process.env.NODE_ENV;
+
+const parseString = require('react-native-xml2js').parseString;
+
+
+
 const SearchForm = (props) => {
 
     const navigate = useNavigate();
 
-    const [query, setQuery] = useState(props.query || '');
-    const [response, setResponse] = useState("");
+    // const [query, setQuery] = useState(props.query || '');
+    // const [response, setResponse] = useState("");
     const [checked, setChecked] = useState(false);
     const [apiState, setAPIState] = useState(
         [
@@ -22,25 +29,58 @@ const SearchForm = (props) => {
     );
 
     const fetchData = (query) => {
-
+        console.log("Fetch Data!!!!!!!!!");
         apiState.forEach(api => {
 
             console.log(api.label, " ", api.checked);
             if(api.checked){
                 console.log("La query est  : ",query," Avec l'API est : ",api.label);
-                axios.get(`http://localhost:8080/${api.label}/${query}`)
+                axios.get(`http://export.arxiv.org/api/query?search_query=all:${query}&max_results=12`)
                     .then(response => {
-                        console.log(response);
-                        setResponse(response.data);
-                        navigate(`/${api.label}/${query}`, { replace: true, responseJson:  response.data});
+                        // var convert = require('xml-js');
+
+                        // var xml = response.data
+                        // convert.parseString(xml, (err, result) => {
+                        //     if(err) {
+                        //         console.log(err);
+                        //     }
+                        // });
+
+                        // console.log(typeof(json));
+                        // console.log(json);
+                        parseString(response, function (err, result) {
+                            //step--2 here
+                            var convert = require('xml-js');
+                            var xml = response.data
+                            var json = convert.xml2js(xml, {compact: true, spaces: 4});
+                            console.log("TYPE",typeof(json));
+                            console.log(json);
+                            props.handleResponse(json.feed.entry); 
+                       });
+
+                            
+                          
+                        navigate(`/results/${query}`,{replace:true});
                     }).catch(error => {
                         console.log(error);
+                    }).finally(() => {
+                        console.log("RESPONSE TYPEE ", typeof(props.response));
+                        console.log("RESPONSE lenght ", props.response);
+                        props.handleLoading(false);
                     })
             }
         });
         
         
     }
+
+    useEffect(()=>{
+
+        fetch('/api').then(res =>{
+
+        })
+
+    })
 
     const updateListAPI=(state,label)=>{
         apiState.forEach(element=>{
@@ -51,7 +91,7 @@ const SearchForm = (props) => {
     }
 
     const checkboxToParent =(checkBoxData,label)=>{
-        //console.log("valeur check box :",!checkBoxData,"valeur label : ",label);
+        // console.log("valeur check box :",!checkBoxData,"valeur label : ",label);
         setChecked(checkBoxData);
         updateListAPI(checkBoxData,label);
        // console.log(API);
@@ -74,11 +114,11 @@ const SearchForm = (props) => {
         <div>
             <div className="search-row row justify-content-center">
                 <div className="form-group col-6">
-                    <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} name="query" className="form-control" placeholder="Search" required ></input>
+                    <input type="text" value={props.query} onChange={(e) => props.handleQuery(e.target.value)} name="query" className="form-control" placeholder="Search" required autoComplete="off"></input>
                 </div>
 
                 <div className="col-1">
-                    <button className="btn" onClick={() => fetchData(query)}>Search</button>
+                    <button className="btn" onClick={() => fetchData(props.query)}>Search</button>
                 </div>
                     
             </div>

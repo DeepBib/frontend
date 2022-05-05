@@ -5,21 +5,23 @@ function ResultArticle(props){
 
     // On récupére l'élément donner en argument de result article
     const reponse = props.result;
-    console.log(reponse)
+    //console.log(reponse)
 
 
     const printResult=(article)=>{
 
         return(
+            
             <div className="row">
             <div className="bg-article">
                 <div className="row">
                     <div className="col-sm-10">
                         <div className="article-info">
-                            <div className="article-title">{article.title[0]}</div>
-                            <div className="article-author">{article.author.map(nameAuthor => (nameAuthor.name[0]))}</div>
-                            <div className="article-date">{article.published[0]}</div>
-                            <div className="article-abstract">{article.summary[0]}</div>
+                            <div className="article-title">{article.title._text}</div>
+                            {/* <div className="article-author">{article.author.map(nameAuthor => (nameAuthor.name[0]))}</div> */}
+
+                            <div className="article-date">{article.published._text}</div>
+                            <div className="article-abstract">{article.summary._text}</div>
                         </div>
                     </div>
                     <div className="col-sm-2">
