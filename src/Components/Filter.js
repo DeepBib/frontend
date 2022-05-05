@@ -1,6 +1,9 @@
 import React from "react";
 
+//Modifie la réponse mais pas la query, donc gère que la réponse 
 function Filter(props){
+    //response 
+
 
     return(
 
@@ -9,7 +12,7 @@ function Filter(props){
             <div className="date-filter ro<">
                 <h4>Date :</h4>
                 <div className="row">
-                <input type="date" name="date-1" className="form-date" placeholder="12-02-1999" required autoComplete="off"></input>to<input type="date" name="date-1" className="form-date" placeholder="12-02-2012" required autoComplete="off"></input>
+                <input type="date" name="date-1" className="form-date" placeholder="12-02-1999" required ></input>to<input type="date" name="date-1" className="form-date" placeholder="12-02-2012" required ></input>
                 </div>
             </div>
             <div className="rank">

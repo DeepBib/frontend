@@ -28,51 +28,51 @@ const SearchForm = (props) => {
         ]
     );
 
-    // const fetchData = (query) => {
+    const fetchData = (query) => {
+        console.log("Fetch Data!!!!!!!!!");
+        apiState.forEach(api => {
 
-    //     apiState.forEach(api => {
+            console.log(api.label, " ", api.checked);
+            if(api.checked){
+                console.log("La query est  : ",query," Avec l'API est : ",api.label);
+                axios.get(`http://export.arxiv.org/api/query?search_query=all:${query}&max_results=12`)
+                    .then(response => {
+                        // var convert = require('xml-js');
 
-    //         console.log(api.label, " ", api.checked);
-    //         if(api.checked){
-    //             console.log("La query est  : ",query," Avec l'API est : ",api.label);
-    //             axios.get(`http://export.arxiv.org/api/query?search_query=all:${query}&max_results=12`)
-    //                 .then(response => {
-    //                     // var convert = require('xml-js');
+                        // var xml = response.data
+                        // convert.parseString(xml, (err, result) => {
+                        //     if(err) {
+                        //         console.log(err);
+                        //     }
+                        // });
 
-    //                     // var xml = response.data
-    //                     // convert.parseString(xml, (err, result) => {
-    //                     //     if(err) {
-    //                     //         console.log(err);
-    //                     //     }
-    //                     // });
-
-    //                     // console.log(typeof(json));
-    //                     // console.log(json);
-    //                     parseString(response, function (err, result) {
-    //                         //step--2 here
-    //                         var convert = require('xml-js');
-    //                         var xml = response.data
-    //                         var json = convert.xml2js(xml, {compact: true, spaces: 4});
-    //                         console.log("TYPE",typeof(json));
-    //                         console.log(json);
-    //                         props.handleResponse(json.feed.entry); 
-    //                    });
+                        // console.log(typeof(json));
+                        // console.log(json);
+                        parseString(response, function (err, result) {
+                            //step--2 here
+                            var convert = require('xml-js');
+                            var xml = response.data
+                            var json = convert.xml2js(xml, {compact: true, spaces: 4});
+                            console.log("TYPE",typeof(json));
+                            console.log(json);
+                            props.handleResponse(json.feed.entry); 
+                       });
 
                             
                           
-    //                     navigate(`/results/${query}`,{replace:true});
-    //                 }).catch(error => {
-    //                     console.log(error);
-    //                 }).finally(() => {
-    //                     console.log("RESPONSE TYPEE ", typeof(props.response));
-    //                     console.log("RESPONSE lenght ", props.response);
-    //                     props.handleLoading(false);
-    //                 })
-    //         }
-    //     });
+                        navigate(`/results/${query}`,{replace:true});
+                    }).catch(error => {
+                        console.log(error);
+                    }).finally(() => {
+                        console.log("RESPONSE TYPEE ", typeof(props.response));
+                        console.log("RESPONSE lenght ", props.response);
+                        props.handleLoading(false);
+                    })
+            }
+        });
         
         
-    // }
+    }
 
     useEffect(()=>{
 
@@ -98,9 +98,9 @@ const SearchForm = (props) => {
     } 
 
 
-    const createCheckBox=(api)=>{
+    const createCheckBox=(api,i)=>{
         return (
-            <div className="form-check form-check-inline">
+            <div className="form-check form-check-inline" key={i}>
                 <CheckBoxAPI
                     checkboxToParent={checkboxToParent}
                     label={api.label}
@@ -124,7 +124,7 @@ const SearchForm = (props) => {
             </div>
             <div className="API-row form-inline">
                 <div className="API-form-text form-check-inline">Bib :</div>
-                {apiState.map(api=>createCheckBox(api))}
+                {apiState.map((api,i)=>createCheckBox(api,i))}
             </div>
         </div> 
     );

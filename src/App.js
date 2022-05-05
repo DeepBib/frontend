@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom"
@@ -32,15 +31,11 @@ function App() {
 
 
   return (
-    <div className="">
-      <Router>
         <Routes>
           <Route exact path="/" element={<Search query={query} handleQuery={handleQuery} response={response} handleResponse={handleResponse} loading={isLoading} handleLoading={handleLoading}/>}/>
           <Route exact path="/results/:query" element={<Results query={query} handleQuery={handleQuery} response={response} handleResponse={handleResponse} loading={isLoading} handleLoading={handleLoading}/>}/>
           {/* <Route exact path="/:api/:sujet" element={<ResultArticle/>}/> */}
         </Routes>
-      </Router>
-    </div>
 
   );
 }

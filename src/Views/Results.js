@@ -38,13 +38,15 @@ const Result = (props) => {
         // console.log("response  : ",props.response);
 
         //setResponse(responseJson.data);
-      }, [])
+      }, [location, ])
 
     const fetchData = () => {
-        const query = location.query;        
-
+        console.log("FETCH DSTA RESUTL: " + JSON.stringify(location));
+        console.log(props);
+        const query = location.pathname;        
+        console.log("fetchData Result!");
         props.handleLoading(true);       
-        axios.get(`http://export.arxiv.org/api/query?search_query=all:${query}&max_results=12`)
+        axios.get(`http://export.arxiv.org/api/query?search_query=all:${props.query}&max_results=12`)
         .then(response => {
             parseString(response, function (err, result) {
                 //step--2 here
@@ -56,7 +58,7 @@ const Result = (props) => {
                 props.handleResponse(json.feed.entry); 
 
             });
-            navigate(`/results/${query}`,{replace:true});
+            navigate(`${query}`,{replace:true});
                 
             }).catch(error => {
                 console.log(error);

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+//Gére que l'API List, modifie que l'API List
 const CheckBoxAPI =({label, checkboxToParent})=> {
 
     const [checked, setChecked] = useState(false);
