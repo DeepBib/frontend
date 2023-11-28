@@ -1,3 +1,8 @@
+# About DeepBib
+
+Browsing scientific literature is a considerable part of the work in any research project, and this task is made even longer by the likelihood of trawling trough irrelevant papers to make sure not to miss something important. While we should expect this process to be partly unavoidable, it could be made shorter with better-performing natural language processing (NLP) algorithms.
+The aim of this project was to respond to that need by making an improved, dedicated search engine. In this project, we studied recent advancements in NLP and their potential application in scientific context.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
