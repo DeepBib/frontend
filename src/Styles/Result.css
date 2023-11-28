@@ -1,0 +1,57 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0 0 13px 0;
+}
+
+a {
+  color: #fff;
+}
+
+.center { text-align: center; }
+
+.searchBar{
+  padding: 3px;
+  padding-left: 10px;
+  margin: 5px;
+
+}
+
+.nav-title{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+
+
+
+.article-title{
+  font-size: large;
+  font-weight: bold;
+}
+
+.article-author{
+  font-size: large;
+  font-style: italic;
+}
+
+
+
+
+
+
+@media (max-width: 600px) {
+  .episode__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .episode__content .story {
+    font-size: 15px;
+  }
+}
